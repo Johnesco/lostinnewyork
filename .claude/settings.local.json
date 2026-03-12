@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Program Files/Inky/resources/app.asar.unpacked//**)",
+      "Bash(\"/c/Program Files/Inky/resources/app.asar.unpacked/main-process/ink/inkjs-compatible/inklecate_win.exe\" /c/code/ifhub/projects/lostinnewyork/lostinnewyork.ink -o /c/code/ifhub/projects/lostinnewyork/lostinnewyork.json 2>&1)",
+      "Bash(\"/c/Program Files/Inky/resources/app.asar.unpacked/main-process/ink/inkjs-compatible/inklecate_win.exe\" lostinnewyork.ink -o lostinnewyork.json 2>&1)",
+      "Bash(ls /c/code/ifhub/tools/web/setup_ink.py 2>/dev/null; echo \"exit: $?\")",
+      "Bash(python /c/code/ifhub/tools/web/setup_ink.py --title \"Lost in New York\" --ink /c/code/ifhub/projects/lostinnewyork/lostinnewyork.ink --out /c/code/ifhub/projects/lostinnewyork --force 2>&1)",
+      "Bash(python /c/code/ifhub/tools/web/generate_pages.py --title \"Lost in New York\" --meta \"An Ink Story\" --description \"You're standing on the corner of Broadway and Canal with a dead phone and the world's worst directions. Your friends are somewhere in downtown Manhattan. Find them.\" --out /c/code/ifhub/projects/lostinnewyork --force 2>&1)",
+      "Bash(python /c/code/ifhub/tools/register_game.py --name lostinnewyork --title \"Lost in New York\" --meta \"An Ink Story\" --description \"You're standing on the corner of Broadway and Canal with a dead phone and the world's worst directions. Your friends are somewhere in downtown Manhattan. Find them.\" 2>&1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/lostinnewyork/play.html 2>&1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/ifhub/ 2>&1)",
+      "Bash(curl -s http://127.0.0.1:8000/lostinnewyork/ 2>&1 | head -5)",
+      "Bash(curl -s http://127.0.0.1:8000/lostinnewyork/index.html 2>&1 | head -5)",
+      "Bash(curl -s http://127.0.0.1:8000/ink-story/play.html 2>&1 | head -3)",
+      "Bash(git -C /c/code/ifhub submodule status 2>&1 | grep lost)",
+      "Bash(python -c \"\nfrom pathlib import Path\np = Path\\('C:/code/ifhub/projects'\\)\nfor entry in sorted\\(p.iterdir\\(\\)\\):\n    if entry.is_dir\\(\\) and not entry.name.startswith\\('.'\\):\n        print\\(entry.name\\)\n\" | grep lost)",
+      "Bash(python -c \"\nfrom pathlib import Path\nSCRIPT_DIR = Path\\('C:/code/ifhub/tools'\\).resolve\\(\\)\nIFHUB_ROOT = SCRIPT_DIR.parent\nprojects = IFHUB_ROOT / 'projects'\nprint\\('IFHUB_ROOT:', IFHUB_ROOT\\)\nprint\\('projects:', projects, '| exists:', projects.exists\\(\\)\\)\nfor e in sorted\\(projects.iterdir\\(\\)\\):\n    if e.is_dir\\(\\) and not e.name.startswith\\('.'\\):\n        print\\(f'  /{e.name} -> {e}'\\)\n\" 2>&1)",
+      "Bash(curl -s http://127.0.0.1:8001/ifhub/ | grep -i \"lostinnewyork\\\\|Lost in New York\" 2>&1)",
+      "Bash(curl -s http://127.0.0.1:8001/ifhub/cards.json | python -c \"import sys,json; cards=json.load\\(sys.stdin\\); print\\([c['id'] for c in cards if 'lost' in c['id']]\\)\")",
+      "Bash(pkill -f \"dev-server.py\" 2>/dev/null)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8080/lostinnewyork/source.html)",
+      "Bash(python /c/code/ifhub/tools/publish.py lostinnewyork 2>&1)"
+    ]
+  }
+}
